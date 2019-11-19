@@ -19,32 +19,17 @@ public abstract class Veiculo
 
     }
 
-    public void setPlaca(string placa)
-    {
+    public void setPlaca(string placa) {
 
-        try
-        {
-            if (placa != "" && placa.Length == 7)
-            {
-
+        try {
+            if (placa != "" && placa.Length == 7) {
                 placa = placa;
-
             }
-
-
-
-        }
-
-        catch (FormatException)
-        {
+        } catch (FormatException) {
 
             Console.WriteLine("O formato dos dados da placa está incorreto");
 
-        }
-
-        catch (ArgumentNullException)
-
-        {
+        } catch (ArgumentNullException) {
 
             Console.WriteLine("A string passada como valor da placa está vazia!");
 
@@ -53,35 +38,25 @@ public abstract class Veiculo
 
     }
 
-    public Estacionada getUsos(int posicao)
-    {
+    public Estacionada getUsos(int posicao) {
 
         return this.usos[posicao];
 
     }
 
-    public void setUsos(int posicao, Estacionada valorVaga)
-    {
-        try
-        {
-            if (this.usos[posicao] == null)
-            {
+    public void setUsos(int posicao, Estacionada valorVaga) {
+        try {
+            if (this.usos[posicao] == null) {
 
-                this.usos[posicao] = valor;
+                this.usos[posicao] = valorVaga;
 
             }
 
-        }
-
-        catch (FormatException)
-        {
+        } catch (FormatException) {
 
             Console.WriteLine("O formato de algum dos parâmetros não é válido!");
 
-        }
-
-        catch (ArgumentException)
-        {
+        } catch (ArgumentException) {
 
             Console.WriteLine("Algum dos parâmetros não é válido!");
 
@@ -92,13 +67,9 @@ public abstract class Veiculo
 
     #region Métodos
 
-    public double tarifa(Estacionada quando)
-    {
-
-
-
+    public virtual double tarifa(Estacionada quando) {
+        return 0;
     }
-
 
     #endregion
 }

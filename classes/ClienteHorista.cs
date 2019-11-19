@@ -1,12 +1,40 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-public class ClienteHorista
-{
-	public ClienteHorista()
-	{
-	}
+namespace trab_final {
+    class ClienteHorista {
+        #region Atributos
 
-    public double valorTarifa(Estacionada quando)  {
-		return 0;
-	}
+        const double tarifa_hora = 8;
+
+        #endregion
+
+        #region GetSets
+
+        double getTarifaHora() {
+            return tarifa_hora;
+        }
+
+        #endregion
+
+        #region Métodos
+        public double ValorTarifa(Estacionada quando) {
+
+            double tarifaFinal = 0;
+
+            
+            TimeSpan tempoEstacionada = quando.getSaida().Subtract(quando.getEntrada());
+
+            tarifaFinal = getTarifaHora() * tempoEstacionada.Hours;
+
+            return tarifaFinal;
+            
+        }
+
+        #endregion
+
+    }
 }

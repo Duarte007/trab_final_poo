@@ -1,70 +1,49 @@
 ﻿using System;
 
-public class Moto
-{
-	    #region Atributos
-    public Moto()
-	{
+public class Moto:Veiculo {
 
-        double desconto;
+    #region Atributos
 
-        const double tarifaBasica = 5;
+    const double tarifaBasica = 5;
+    private double desconto = 1;
+
+    #endregion
+
+    #region Construtores
+
+    public Moto(string placa) {
+
+        setPlaca(placa);
 
     }
 
     #endregion
 
     #region GetSets
-    public double getTarifaBasica()
-    {
+    public double getTarifaBasica() {
 
         return tarifaBasica;
 
     }
 
-    public double getDesconto()
-    {
+    public double getDesconto() {
 
         return desconto;
 
     }
 
-    public void setDesconto(double valor, double tarifaBasica)
-    {
+    public void setDesconto(double valor, double tarifaBasica) {
 
         if (valor > 0 && valor < tarifaBasica)
 
-            try
-            {
-
+            try {
                 this.desconto = valor;
-
-            }
-
-            catch (ArgumentNullException)
-
-            {
-
+            } catch (ArgumentNullException) {
                 Console.WriteLine("O parâmetro está nulo!");
-
-            }
-
-
-            catch (FormatException)
-
-            {
-
+            } catch (FormatException) {
                 Console.WriteLine("Oformato do parâmetro está incorreto!");
-
-            }
-
-
-            catch (ArgumentException)
-
-            {
-
+            } catch (ArgumentException) {
                 Console.WriteLine("O parâmetro não é válido!");
-
             }
 
     }
@@ -74,9 +53,7 @@ public class Moto
 
     
     #region Métodos
-    public double tarifa(Estacionada quando) 
-    
-    {
+    public override double tarifa(Estacionada quando) {
 
         double valorDesconto = 2;
 
@@ -84,7 +61,7 @@ public class Moto
 
         int tarifaHora = 5;
 
-        TimeSpan tempoEstacionada = Estacionada.saida.Subtract(Estacionada.entrada);
+        TimeSpan tempoEstacionada = quando.getSaida().Subtract(quando.getEntrada());
 
         tarifaFinal = (tarifaHora - getDesconto()) * tempoEstacionada.Hours;
 
@@ -94,14 +71,4 @@ public class Moto
 
     #endregion
 
-    #region Construtores
-
-    public Moto(string placa)
-    {
-
-        setPlaca(placa);
-
-    }
-
-    #endregion 
 }
